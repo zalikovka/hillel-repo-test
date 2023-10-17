@@ -1,5 +1,6 @@
+# this is windows 10.1.1
 def windows():
-    print("💻💻💻💻")
+    print("💻💻💻💻💻💻")
     return "Hello from Windows 10.1.1"
 
 
