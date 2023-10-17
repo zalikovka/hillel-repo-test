@@ -1,5 +1,6 @@
 def windows():
-    return "Hello from Windows 10"
+    print("💻💻💻")
+    return "Hello from Windows 10.1"
 
 
 if __name__ == "__main__":
