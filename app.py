@@ -1,11 +1,12 @@
 
-def breaking_function():
-    1/0
+def non_breaking_function():
+    0/1
     print("This is a function that does nothing")
 
 
 def main():
-    breaking_function()
+    non_breaking_function()
+
 
 
 if __name__ == "__main__":
