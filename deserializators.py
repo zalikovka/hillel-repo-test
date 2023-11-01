@@ -10,3 +10,15 @@ def deserialize_student_data():
         "name": name,
         "age": age
     }
+
+
+def deserialize_mark_data():
+    data = request.get_json()
+
+    student_id = data.get("student_id")
+    value = data.get("value")
+
+    return {
+        "student_id": student_id,
+        "value": value
+   }

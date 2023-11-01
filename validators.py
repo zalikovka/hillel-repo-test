@@ -1,3 +1,6 @@
+from db import Student
+
+
 class ValidationError(Exception):
     pass
 
@@ -18,3 +21,27 @@ def validate_student_data(data):
         raise ValidationError("age must be positive")
     if name == "":
         raise ValidationError("name must not be empty")
+
+
+def validate_mark_data(data):
+    student_id = data.get("student_id")
+    value = data.get("value")
+
+    student = Student.get_or_none(id=student_id)
+
+    if not student:
+        raise ValidationError("student with such id does not exist")
+
+    if not (student_id and value):
+        raise ValidationError("student_id and value are required")
+
+    if not isinstance(student_id, int):
+        raise ValidationError("student_id must be integer")
+    if not isinstance(value, int):
+        raise ValidationError("value must be integer")
+
+    if value < 0:
+        raise ValidationError("value must be positive")
+
+    data["student"] = student
+    return data
