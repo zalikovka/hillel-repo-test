@@ -9,6 +9,7 @@ logger.addHandler(logging.StreamHandler())
 
 db = SqliteDatabase('sqlite3.db')
 
+
 class BaseModel(Model):
     class Meta:
         database = db
@@ -19,13 +20,23 @@ class Student(BaseModel):
     age = IntegerField()
 
 
+class Teacher(BaseModel):
+    name = CharField()
+    age = IntegerField()
+    subject = CharField()
+    start_of_work = DateTimeField(default=datetime.now)
+    end_of_work = DateTimeField(default="")
+    is_active = IntegerField(default=1)
+
+
 class Mark(BaseModel):
     student = ForeignKeyField(Student, backref='marks')
     value = IntegerField()
     timestamp = DateTimeField(default=datetime.now)
+    teacher = ForeignKeyField(Teacher, backref='marks')
 
 
 if __name__ == "__main__":
     db.connect()
-    db.create_tables([Student, Mark])
+    db.create_tables([Student, Mark, Teacher])
     db.close()
